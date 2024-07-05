@@ -3,24 +3,30 @@
 <script type="text/javascript" src="/javascript/animation.js"></script>
 
 <div class="main-content">
-
   <div class="content1">
     <h1>Our World</h1>
-
   </div>
   <div class="content2">
     <h2>My Blogs</h2>
     <div class="sample-posts">
-      <% for( let i = 0; i < post_img.length; i++ ) { %>
+      <% for( let i = 0; i < 4; i++ ) { %>
       <a href="/post">
-
         <div class="post_block">
-          <img src=<%= post_img[i] %> alt="">
-          <h3><%= post_title[i] %></h3>
-          <!-- <p><%= post_desc[i] %></p> -->
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint est ea iusto libero aut quidem ipsum debitis earum aspernatur, perferendis recusandae? Adipisci veritatis culpa doloribus alias. At dolorum perspiciatis quo.
-            Magnam doloremque ipsam facere, laudantium ea deleniti, laboriosam sed nemo architecto quod vero optio pariatur a incidunt quis, consectetur similique fuga. Quasi explicabo id aliquam, dolore laboriosam enim molestias. Aliquid?
-            Error et consectetur nihil sint pariatur quas rerum molestiae repellendus illo magni quam aperiam, obcaecati, debitis, eveniet natus? Vel qui asperiores iure nisi, velit amet iusto similique labore libero ducimus.
+          <img src="<%= posts_list[i].image %>" alt="" />
+          <h3><%= posts_list[i].title %></h3>
+          <!-- <p><%= posts_list[i].description %></p> -->
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint est ea
+            iusto libero aut quidem ipsum debitis earum aspernatur, perferendis
+            recusandae? Adipisci veritatis culpa doloribus alias. At dolorum
+            perspiciatis quo. Magnam doloremque ipsam facere, laudantium ea
+            deleniti, laboriosam sed nemo architecto quod vero optio pariatur a
+            incidunt quis, consectetur similique fuga. Quasi explicabo id
+            aliquam, dolore laboriosam enim molestias. Aliquid? Error et
+            consectetur nihil sint pariatur quas rerum molestiae repellendus
+            illo magni quam aperiam, obcaecati, debitis, eveniet natus? Vel qui
+            asperiores iure nisi, velit amet iusto similique labore libero
+            ducimus.
           </p>
         </div>
       </a>
@@ -29,7 +35,5 @@
     </div>
   </div>
 </div>
-
-
 
 <%- include("partials/footer.ejs") %>

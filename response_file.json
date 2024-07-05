@@ -1,0 +1,34 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "God of Universe",
+      "description": "content",
+      "image": "/Images/galaxy.avif"
+    },
+    {
+      "id": 2,
+      "title": "Sun & Planets",
+      "description": "content",
+      "image": "/Images/planets.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Games",
+      "description": "content",
+      "image": "/Images/game.avif"
+    },
+    {
+      "id": 4,
+      "title": "Movies",
+      "description": "content",
+      "image": "/Images/movie.avif"
+    },
+    {
+      "id": 5,
+      "title": "Health is Wealth",
+      "description": "content",
+      "image": "/Images/health.avif"
+    }
+  ]
+}

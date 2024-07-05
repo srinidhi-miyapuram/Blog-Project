@@ -18,18 +18,19 @@
           </div>
         </div>
       </a>
-      <% for( let i = 0; i < post_img.length; i++ ) { %>
+      <% for( let i = 0; i < posts_list.length; i++ ) { %>
       <a href="/post">
         <div class="post_block">
-          <img src=<%=post_img[i] %> alt="">
-          <h3><%= post_title[i] %></h3>
-          <!-- <p><%= post_desc[i] %></p> -->
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint est
-            ea iusto libero aut quidem ipsum debitis earum aspernatur,
-            perferendis recusandae? Adipisci veritatis culpa doloribus alias. At
-            dolorum perspiciatis quo. Magnam doloremque ipsam facere, laudantium
-            ea deleniti, laboriosam sed nemo architecto quod vero optio pariatur
-            a incidunt quis, consectetur similique fuga. Quasi explicabo id
+          <img src="<%= posts_list[i].image %>" alt="" />
+          <h3><%= posts_list[i].title %></h3>
+          <!-- <p><%= posts_list[i].description %></p> -->
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint est ea
+            iusto libero aut quidem ipsum debitis earum aspernatur, perferendis
+            recusandae? Adipisci veritatis culpa doloribus alias. At dolorum
+            perspiciatis quo. Magnam doloremque ipsam facere, laudantium ea
+            deleniti, laboriosam sed nemo architecto quod vero optio pariatur a
+            incidunt quis, consectetur similique fuga. Quasi explicabo id
             aliquam, dolore laboriosam enim molestias. Aliquid? Error et
             consectetur nihil sint pariatur quas rerum molestiae repellendus
             illo magni quam aperiam, obcaecati, debitis, eveniet natus? Vel qui

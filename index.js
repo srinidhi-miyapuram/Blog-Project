@@ -1,20 +1,20 @@
 import express from "express";
 import bodyParser from "body-parser";
+import posts from "./response_file.json" with { type: "json"};
+import * as fs from 'fs'
 
 const app = express();
 const port = 3000;
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+const posts_list = posts;
 
 app.get("/", (req, res) => {
-  const title = post_title.slice(0, 4);
-  const description = post_desc.slice(0, 4);
-  const image = post_img.slice(0, 4);
   res.render("index.ejs", {
-    post_title: title,
-    post_desc: description,
-    post_img: image,
+    posts_list: posts_list.posts,
   });
 });
 
@@ -24,9 +24,7 @@ app.get("/about", (req, res) => {
 
 app.get("/post", (req, res) => {
   res.render("post.ejs", {
-    post_title: post_title,
-    post_desc: post_desc,
-    post_img: post_img,
+    posts_list: posts_list.posts,
   });
 });
 
@@ -35,9 +33,6 @@ app.get("/contact", (req, res) => {
 });
 
 app.post("/contact", (req, res) => {
-  post_title.unshift(req.body["name"]);
-  console.log(post_desc);
-
   res.render("contact.ejs");
 });
 
@@ -49,24 +44,18 @@ app.get("/new", (req, res) => {
   res.render("new_post.ejs");
 });
 
+app.post("/save", (req, res) => {
+  console.log(req.body)
+  let post_content = fs.readFileSync("response_file.json", 'utf-8');
+  let post_content_json = JSON.parse(post_content);
+  post_content_json.posts.push(req.body);
+  let post_json_write = JSON.stringify(post_content_json);
+  fs.writeFileSync("response_file.json", post_json_write, 'utf-8');
+  // post_content_json.posts.push(req.body);
+  res.redirect('/new');
+});
+
 app.listen(port, (req, res) => {
   console.log(`Listening on port ${port}`);
 });
 
-var post_title = [
-  "God of Universe",
-  "Sun & Planets",
-  "Games",
-  "Movies",
-  "Health is Wealth",
-];
-
-var post_desc = ["content", "content", "content", "content", "content"];
-
-var post_img = [
-  "/Images/galaxy.avif",
-  "/Images/planets.jpg",
-  "/Images/game.avif",
-  "/Images/movie.avif",
-  "/Images/health.avif",
-];

@@ -1,34 +1,73 @@
 <%- include("partials/header.ejs") %>
 
-<div class="new_post">
-  <div class="cont_img">
+<form action="/save" method="post">
+  <div class="new_post">
+    <a href="/new" id="image_post_link" onclick="savePost()"
+      ><img id="image_post" src="/Images/save.png" alt="Save"
+    /></a>
 
-    <div id="img1" class="img1" onclick="file_upload('img1',this)" contenteditable="true">
+    <div class="cont_img">
+      <div
+        id="img1"
+        class="img1"
+        onclick="file_upload('img1',this)"
+        contenteditable="true"
+      ></div>
+      <h1 contenteditable="true" onchange="titleChange(this)">Title</h1>
+      <input
+        type="file"
+        name="filename"
+        id="file_prompt"
+        onchange="getFileName(this)"
+      />
     </div>
-    <h1 contenteditable="true">Title</h1>
-    <input type="file" name="filename" id="file_prompt" onchange="getFileName(this)">
+    <div class="content_post" contenteditable="true">
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum officia
+        dolores maxime harum quas unde vero eius, pariatur nam architecto qui
+        autem sunt magnam dolorem ipsa, reiciendis illo quaerat excepturi!
+        Corrupti aliquid voluptate officiis quisquam. Eveniet sed nesciunt illum
+        impedit autem odio omnis et saepe! Nulla, quae? Tempora dolorum tenetur
+        saepe quidem porro repellat? Cum sapiente tempore ab ex recusandae.
+        Voluptates cumque, beatae voluptatem, rem perspiciatis deserunt vitae
+        dolorem voluptas itaque, quisquam aspernatur adipisci eligendi atque
+        accusantium. Necessitatibus veritatis, aliquid at dolores distinctio
+        neque eaque nam voluptas voluptatum saepe! Accusamus! Eius, perspiciatis
+        qui? Velit ad facere ipsum hic dolore sint molestiae doloribus debitis
+        nihil. Expedita harum tenetur omnis tempora et, quidem odit veniam autem
+        similique cum in debitis corrupti animi? Eos totam veniam repellat
+        fugiat praesentium inventore rerum voluptas nam pariatur, magni
+        accusantium repellendus quisquam. Odit provident sapiente, et aperiam
+        libero consequatur voluptates dolor officiis! Dolorem porro veniam
+        ratione tenetur! Libero laborum doloribus, animi quidem inventore
+        adipisci quae omnis! Nam, nobis dolores consectetur obcaecati eveniet
+        ullam ab nihil aperiam ex reprehenderit iure omnis tempore voluptas rem
+        architecto sit, perferendis aliquid. Expedita fugiat ad architecto
+        eveniet temporibus, id illum harum vero repellendus repudiandae
+        blanditiis error rerum quisquam dignissimos ut quas consequatur optio
+        similique maxime repellat iste. Quis saepe magni excepturi et. Ex,
+        eligendi fuga harum laborum tempore praesentium cum itaque quod
+        sapiente, asperiores aliquid cupiditate amet voluptatibus tenetur, culpa
+        quos non at beatae quo est! A repellendus magnam pariatur ex possimus.
+        Mollitia, non. Voluptates molestias quod repellendus. Reprehenderit
+        expedita quam magni vero, odit ut sapiente beatae animi. Error, fuga
+        quas ea iure reiciendis a libero vitae doloremque, iusto atque
+        praesentium incidunt! Iusto, nisi repellendus. Culpa at quae placeat qui
+        pariatur quis et consequatur reprehenderit rem, deserunt incidunt, ea
+        porro nesciunt voluptates? Minus blanditiis iste, maxime pariatur
+        accusamus sed? Molestiae, harum culpa?
+      </p>
+    </div>
   </div>
-  <div class="content_post" contenteditable="true">
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum officia dolores maxime harum quas unde vero eius, pariatur nam architecto qui autem sunt magnam dolorem ipsa, reiciendis illo quaerat excepturi!
-      Corrupti aliquid voluptate officiis quisquam. Eveniet sed nesciunt illum impedit autem odio omnis et saepe! Nulla, quae? Tempora dolorum tenetur saepe quidem porro repellat? Cum sapiente tempore ab ex recusandae.
-      Voluptates cumque, beatae voluptatem, rem perspiciatis deserunt vitae dolorem voluptas itaque, quisquam aspernatur adipisci eligendi atque accusantium. Necessitatibus veritatis, aliquid at dolores distinctio neque eaque nam voluptas voluptatum saepe! Accusamus!
-      Eius, perspiciatis qui? Velit ad facere ipsum hic dolore sint molestiae doloribus debitis nihil. Expedita harum tenetur omnis tempora et, quidem odit veniam autem similique cum in debitis corrupti animi?
-      Eos totam veniam repellat fugiat praesentium inventore rerum voluptas nam pariatur, magni accusantium repellendus quisquam. Odit provident sapiente, et aperiam libero consequatur voluptates dolor officiis! Dolorem porro veniam ratione tenetur!
-      Libero laborum doloribus, animi quidem inventore adipisci quae omnis! Nam, nobis dolores consectetur obcaecati eveniet ullam ab nihil aperiam ex reprehenderit iure omnis tempore voluptas rem architecto sit, perferendis aliquid.
-      Expedita fugiat ad architecto eveniet temporibus, id illum harum vero repellendus repudiandae blanditiis error rerum quisquam dignissimos ut quas consequatur optio similique maxime repellat iste. Quis saepe magni excepturi et.
-      Ex, eligendi fuga harum laborum tempore praesentium cum itaque quod sapiente, asperiores aliquid cupiditate amet voluptatibus tenetur, culpa quos non at beatae quo est! A repellendus magnam pariatur ex possimus.
-      Mollitia, non. Voluptates molestias quod repellendus. Reprehenderit expedita quam magni vero, odit ut sapiente beatae animi. Error, fuga quas ea iure reiciendis a libero vitae doloremque, iusto atque praesentium incidunt!
-      Iusto, nisi repellendus. Culpa at quae placeat qui pariatur quis et consequatur reprehenderit rem, deserunt incidunt, ea porro nesciunt voluptates? Minus blanditiis iste, maxime pariatur accusamus sed? Molestiae, harum culpa?</p>
-  </div>
-</div>
-
-<script>
-  var title = document.getElementById('img1');
+</form>
+<script type="text/javascript">
+  var title = document.getElementById("img1");
+  var title_h1 = document.getElementsByTagName("h1");
 
   function file_upload(elem, event) {
-
-    file_upload_block = document.getElementById('file_prompt');
+    file_upload_block = document.getElementById("file_prompt");
     file_upload_block.click();
+
     // window.onload = function() {
     //   file_upload_block.addEventListener('change', getFileName);
     // }
@@ -37,9 +76,38 @@
   function getFileName(e) {
     var file = e.files;
     var filename = file[0].name;
-    console.log(file);
     filename = "/Images/" + filename;
-    title.style.backgroundImage = `url(${filename})`;
+    // title.style.backgroundImage = `url(${filename})`;
+  }
+
+  function savePost() {
+    var postTitle = document.getElementsByTagName("h1")[0].innerText;
+    var postContent = document.getElementsByTagName("p")[0].innerText;
+    var postImage =
+      document.getElementsByClassName("img1")[0].style.backgroundImage;
+    if (postImage == "" || postImage == null) {
+      postImage = "/Images/planets.jpg";
+    }
+    var json_content = {
+      title: postTitle,
+      description: postContent,
+      image: postImage,
+    };
+
+    var json_obj = JSON.stringify(json_content);
+
+    fetch("/save", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: json_obj,
+    })
+      .then((response) => response.text())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => console.error("Error loading the JSON file:", error));
   }
 </script>
 

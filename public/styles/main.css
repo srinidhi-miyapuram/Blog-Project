@@ -393,3 +393,36 @@ footer h5 {
   text-align: end;
   margin: 0;
 }
+
+/* Save Post */
+#image_button {
+  visibility: hidden;
+  margin: 0;
+  position: absolute;
+  top: 0.5em;
+  right: 1.5em;
+  width: 3em;
+  height: 3em;
+}
+
+#image_post_link {
+  text-decoration: none;
+}
+
+#image_post {
+  visibility: visible;
+  width: 3em;
+  height: 3em;
+  position: absolute;
+  top: 0.5em;
+  right: 1.5em;
+  cursor: pointer;
+  z-index: 1;
+  position: fixed;
+  border: 2px solid white;
+  border-radius: 10px;
+}
+
+#image_post:hover {
+  transform: scale(1.2);
+}
