@@ -14,29 +14,23 @@
         <div class="post_block new_create">
           <div class="new">
             <i class="fa fa-plus"></i>
-            <h3>Create</h3>
+            <h3>New</h3>
           </div>
         </div>
       </a>
       <% for( let i = 0; i < posts_list.length; i++ ) { %>
-      <a href="/post">
+        <div class="post_block_edit">
+      <a class="new_post_options" href="/new">
         <div class="post_block">
           <img src="<%= posts_list[i].image %>" alt="" />
           <h3><%= posts_list[i].title %></h3>
-          <!-- <p><%= posts_list[i].description %></p> -->
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint est ea
-            iusto libero aut quidem ipsum debitis earum aspernatur, perferendis
-            recusandae? Adipisci veritatis culpa doloribus alias. At dolorum
-            perspiciatis quo. Magnam doloremque ipsam facere, laudantium ea
-            deleniti, laboriosam sed nemo architecto quod vero optio pariatur a
-            incidunt quis, consectetur similique fuga. Quasi explicabo id
-            aliquam, dolore laboriosam enim molestias. Aliquid? Error et
-            consectetur nihil sint pariatur quas rerum molestiae repellendus
-            illo magni quam aperiam, obcaecati, debitis, eveniet natus? Vel qui
-            asperiores iure nisi, velit amet iusto similique labore libero
-            ducimus.
-          </p>
+          <p><%= posts_list[i].description %></p>
+          
+        </div>
+        <div class="hover_block">
+          <a class="edit" href="/edit" onclick="postEdit('<%= i %>', '<%= posts_list[i].title %>', '<%= posts_list[i].description %>', '<%= posts_list[i].image %>' )"><img src="/Images/edit.png" alt="Edit" /></a>
+          <a class="edit" href=""><img src="/Images/delete.png" alt="Delete" /></a>
+        </div>
         </div>
       </a>
 
@@ -44,4 +38,33 @@
     </div>
   </div>
 </div>
+
+
+<script type="text/javascript">
+  function postEdit(index, title, description, image) {
+    var json_cont = { 
+      id: ++index,
+      title: title,
+      description: description,
+      image: image,
+     };
+    var body = JSON.stringify(json_cont);
+    fetch('/edit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: body,
+    })
+    .then((response) => response.text())
+    .then((data) => {
+      console.log(data);
+    })
+      .catch((error) => console.error("Error loading the JSON file:", error));
+  }
+ 
+</script>
+
 <%- include("partials/footer.ejs") %>
+
+
