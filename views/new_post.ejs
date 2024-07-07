@@ -2,7 +2,7 @@
 
 <form action="/save" method="post">
   <div class="new_post">
-    <a href="/new" id="image_post_link" onclick="savePost()"
+    <a href="/post/new" id="image_post_link" onclick="savePost()"
       ><img id="image_post" src="/Images/save.png" alt="Save"
     /></a>
 
@@ -49,8 +49,7 @@
   function savePost() {
     var postTitle = document.getElementsByTagName("h1")[0].innerText;
     var postContent = document.getElementsByTagName("p")[0].innerText;
-    var postImage =
-      document.getElementsByClassName("img1")[0].style.backgroundImage;
+    var postImage = "<%= image %>";
     if (postImage == "" || postImage == null) {
       postImage = "/Images/planets.jpg";
     }

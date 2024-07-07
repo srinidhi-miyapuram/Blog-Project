@@ -29,7 +29,7 @@
         </div>
         <div class="hover_block">
           <a class="edit" href="/edit" onclick="postEdit('<%= i %>', '<%= posts_list[i].title %>', '<%= posts_list[i].description %>', '<%= posts_list[i].image %>' )"><img src="/Images/edit.png" alt="Edit" /></a>
-          <a class="edit" href=""><img src="/Images/delete.png" alt="Delete" /></a>
+          <a class="edit" href="/delete" onclick="postDelete('<%= i %>')"><img src="/Images/delete.png" alt="Delete" /></a>
         </div>
         </div>
       </a>
@@ -43,7 +43,7 @@
 <script type="text/javascript">
   function postEdit(index, title, description, image) {
     var json_cont = { 
-      id: ++index,
+      id: index++,
       title: title,
       description: description,
       image: image,
@@ -63,6 +63,24 @@
       .catch((error) => console.error("Error loading the JSON file:", error));
   }
  
+//  delete post function
+
+  function postDelete(index) {
+    let body = JSON.stringify({
+      id: index,
+    })
+    fetch('/delete', {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: body,
+    })
+    .then((response) => response.text())
+    .catch((error) => console.log("Error loading the JSON file: "), error);
+  }
+
+  
 </script>
 
 <%- include("partials/footer.ejs") %>

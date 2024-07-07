@@ -1,7 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import posts from "./response_file.json" with { type: "json"};
-import * as fs from 'fs'
+import * as fs from 'fs';
 
 const app = express();
 const port = 3000;
@@ -11,7 +11,7 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const posts_list = posts;
+var posts_list = posts;
 
 app.get("/", (req, res) => {
   res.render("index.ejs", {
@@ -24,8 +24,10 @@ app.get("/about", (req, res) => {
 });
 
 app.get("/post", (req, res) => {
+  let post_list = fs.readFileSync('response_file.json', 'utf-8');
+  let post_list_cont = JSON.parse(post_list);
   res.render("post.ejs", {
-    posts_list: posts_list.posts,
+    posts_list: post_list_cont.posts,
   });
 });
 
@@ -38,14 +40,11 @@ app.post("/contact", (req, res) => {
 });
 
 app.get("/post/new", (req, res) => {
-  console.log("--------------------------------");
-  console.log(req.body);
   res.redirect("/new");
 });
 
 
 app.get("/edit", (req, res) => {
-  console.log(req)
   res.render("new_post.ejs", {
     num: index,
     title: title,
@@ -61,9 +60,22 @@ app.post("/edit", (req, res) => {
   res.redirect("/edit");
 })
 
+app.get('/delete', (req, res) => {
+  res.redirect('/post');
+})
+
+app.post("/delete", (req, res) => {
+  let post_content = fs.readFileSync("response_file.json", 'utf-8');
+  let post_content_json = JSON.parse(post_content);
+  // delete post_content_json.posts[req.body.id];
+  post_content_json.posts.splice(req.body.id, 1);
+  let post_new_content = JSON.stringify(post_content_json);
+  fs.writeFileSync("response_file.json", post_new_content, 'utf-8');
+  res.redirect('/post');
+})
+
 
 app.get("/new", (req, res) => {
-  console.log(req.body);
   res.render("new_post.ejs", {
     num: index,
     title: title,
@@ -73,20 +85,45 @@ app.get("/new", (req, res) => {
 });
 
 app.post("/save", (req, res) => {
-  // console.log(req.body)
   let post_content = fs.readFileSync("response_file.json", 'utf-8');
   let post_content_json = JSON.parse(post_content);
-  console.log(post_content_json.length);
-  post_content_json.posts.push(req.body);
+  var status = false;
+  for (let ind = 0; ind < post_content_json.posts.length; ind++) {
+    const element = post_content_json.posts[ind].id;
+    
+    if (element == req.body.id){
+      post_content_json.posts[ind].title = req.body.title;
+      post_content_json.posts[ind].description = req.body.description;
+      post_content_json.posts[ind].image = req.body.image;
+
+      
+      status = true;
+      break;
+    }
+    
+  }
+  if (status == false){
+    post_content_json.posts.push(req.body);
+  }
   let post_json_write = JSON.stringify(post_content_json);
   fs.writeFileSync("response_file.json", post_json_write, 'utf-8');
-  // post_content_json.posts.push(req.body);
+
+  // Reassigning local title and description variables
+
+  index = req.body.id;
+  title = req.body.title;
+  desc = req.body.desc;
+  img = req.body.image;
   res.redirect('/new');
 });
 
 app.listen(port, (req, res) => {
   console.log(`Listening on port ${port}`);
 });
+
+function load_page() {
+  window.location.reload();
+}
 
 var title = "Title";
 
