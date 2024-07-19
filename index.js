@@ -5,7 +5,6 @@ import * as fs from 'fs';
 
 const app = express();
 const port = 3000;
-var i = 5;
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -85,7 +84,6 @@ app.get("/new", (req, res) => {
 });
 
 app.post("/save", (req, res) => {
-  console.log(req);
   let post_content = fs.readFileSync("response_file.json", 'utf-8');
   let post_content_json = JSON.parse(post_content);
   var status = false;
