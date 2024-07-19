@@ -60,6 +60,7 @@
       image: postImage,
     };
 
+    document.getElementsByTagName("p")[0].innerText = postContent;
     var json_obj = JSON.stringify(json_content);
 
     fetch("/save", {

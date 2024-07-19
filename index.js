@@ -85,6 +85,7 @@ app.get("/new", (req, res) => {
 });
 
 app.post("/save", (req, res) => {
+  console.log(req);
   let post_content = fs.readFileSync("response_file.json", 'utf-8');
   let post_content_json = JSON.parse(post_content);
   var status = false;
@@ -112,9 +113,10 @@ app.post("/save", (req, res) => {
 
   index = req.body.id;
   title = req.body.title;
-  desc = req.body.desc;
+  desc = req.body.description;
   img = req.body.image;
   res.redirect('/new');
+  
 });
 
 app.listen(port, (req, res) => {
@@ -127,7 +129,9 @@ function load_page() {
 
 var title = "Title";
 
-var index = 0;
+var json_content = JSON.parse(fs.readFileSync('response_file.json', 'utf-8'));
+var index = json_content.posts.length;
+
 
 var img = "/Images/planets.jpg";
 
